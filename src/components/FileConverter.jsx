@@ -12,6 +12,45 @@ const FileConverter = ({ file }) => {
         return filename.substring(0, filename.lastIndexOf('.')) || filename;
     };
 
+    const handleConversion = async () => {
+        try {
+            setIsConverting(true);
+            setProgress(0);
+    
+            let convertedFile;
+            switch(outputFormat) {
+                case 'pdf':
+                    convertedFile = await convertToPDF(file, 'pdf');
+                    break;
+                case 'doc':
+                    convertedFile = await convertToDocx(file, 'doc');
+                    break;
+                case 'docx':
+                    convertedFile = await convertToDocx(file, 'docx');
+                    break;
+                case 'jpg':
+                    convertedFile = await convertToImage(file, 'jpg');
+                    break;
+                case 'png':
+                    convertedFile = await convertToImage(file, 'png');
+                    break;
+    
+                default:
+                    throw new Error('Unsupported format');
+            }
+    
+            setProgress(100);
+            const newFilename = `${getFilenameWithoutExtension(file.name)}.${outputFormat}`;
+            saveAs(convertedFile, newFilename);
+            setIsConverting(false);
+            setProgress(0);
+    
+        } catch (error) {
+            console.error('Conversion error:', error);
+            alert(`Conversion failed: ${error.message}`);
+            setIsConverting(false);
+        }
+    };
 
     const convertToPDF = async (inputFile) => {
         const pdfDoc = await pdf.PDFDocument.create();
