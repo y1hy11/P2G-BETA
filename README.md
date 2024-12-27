@@ -1,6 +1,6 @@
-# P2G-BETA - Free Online PDF-PNG-JPG-DOC Converter
+# P2G-BETA - Online PDF-PNG-JPG-DOC Converter
 
-This project is a file converter that supports converting between various file formats such as PDF to PNG, PNG to JPG, JPG to PDF, and more. It is built using Vite.js and React.js for a fast and efficient development experience.
+This project is a Beta version of file converter that supports converting between various file formats such as PDF to PNG, PNG to JPG, JPG to PDF, and more. It is built using Vite.js and React.js for a fast and efficient development experience.
 
 ## Features
 
